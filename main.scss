@@ -1,0 +1,78 @@
+
+@use './sass/helpers/mixin' as * ;
+
+
+
+$direction: top;
+
+.arrow {
+    padding: 10px;
+    border: 1px solid #777;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-weight: bold;
+    color: #777;
+    border-radius: 10px;
+    &::before {
+        content: '';
+        position: absolute;
+        border: 20px solid transparent;
+
+        @if $direction == 'top'{
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-color: #ff00007a ;
+        }
+        @else if $direction == 'right'{
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left-color:#ff00007a ;
+        }
+        @else if $direction == 'bottom'{
+            bottom:-40px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top-color:#ff00007a ;
+        }
+        @else if $direction == 'left'{
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-right-color:#ff00007a ;
+        }
+        @else {
+        @error 'Sorry This Direction is not valid'
+    };
+
+    };
+};
+
+    // the ovelay
+    $color :black;
+    $opasity:0.5;
+    .make-overlay {
+        @include overlay($color,$opasity)
+    }
+
+
+    // media 
+.our-media {
+    @include breaPoint(mobile){
+        font-size: 18px;
+    };
+
+    @include breaPoint(small){
+    font-size: 20px;
+    };
+
+    @include breaPoint(large){
+    font-size: 25px;
+    };
+    }
